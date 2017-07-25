@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'ptk_gestaorecurso_teste.recursos',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,25 @@ WSGI_APPLICATION = 'ptk_gestaorecurso_teste.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'dbgestaorecursos',                      # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+        'USER': 'Udbgestaorecursos',
+        'PASSWORD': 'welcome1',
+        'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+        'PORT': '5432',                      # Set to empty string for default.
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,15 +112,19 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+#AUTH_USER_MODEL = 'recursos.Usuario'
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
-USE_L10N = True
+USE_L10N = False
 USE_TZ = True
+DATE_FORMAT = '%d-%m-%Y'
+TIME_FORMAT = '%H:%M'
+DATE_INPUT_FORMATS = ( "%d/%m/%Y", )
+DATETIME_INPUT_FORMATS = ( "%d/%m/%Y %H:%M", )
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
