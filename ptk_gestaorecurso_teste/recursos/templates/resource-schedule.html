@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PTK Gestão de Recursos</title>
+
+    <link rel="icon" type="img/ico" href="assets/img/favicon.ico">
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="assets/img/logo-mini.jpg" class="logo-ptk">
+            Gestão de Recursos
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="schedule-button">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resource-schedule-modal">Agendar recurso</button>
+      </div>
+      <div class="calendar-box">
+        <iframe src="https://calendar.google.com/calendar/embed?src=sjcpantokrator%40gmail.com&ctz=America/Sao_Paulo" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+
+    <div class="modal fade" id="resource-schedule-modal" tabindex="-1" role="dialog" aria-labelledby="resource-schedule-modal-label">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="resource-schedule-modal">Agendamento de Recurso</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="resource" class="control-label">Sala/Recurso:</label>
+                <select class="form-control" id="resource">
+                  <option value="" selected disabled>Selecione um recurso...</option>
+                  <option value="1">Salão</option>
+                  <option value="2">Sala Santa Terezinha</option>
+                  <option value="3">Sala Santa Tereza</option>
+                  <option value="4">Capela do Santíssimo</option>
+                  <option value="5">Projetor</option>
+                  <option value="6">Notebook</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="date" class="control-label">Data:</label>
+                <input id="date" class="form-control datepicker" data-date-format="dd/mm/yyyy"></input>
+              </div>
+              <div class="form-group">
+                <label for="start-hour" class="control-label">Hora de Início:</label>
+                <input type="number" id="start-hour" class="form-control" min="0" max="23"></input>
+              </div>
+              <div class="form-group">
+                <label for="end-hour" class="control-label">Hora Final:</label>
+                <input type="number" id="end-hour" class="form-control" min="0" max="23"></input>
+              </div>
+              <label for="reason" class="control-label">Motivo:</label>
+              <select class="form-control" id="reason">
+                <option value="" selected disabled>Selecione um motivo...</option>
+                <option value="1">Apostolado</option>
+                <option value="2">Retiro</option>
+                <option value="3">Intercessão</option>
+                <option value="4">Formação</option>
+              </select>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="schedule-btn"class="btn btn-primary">Agendar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/app/resource-schedule.js"></script>
+
+</body>
