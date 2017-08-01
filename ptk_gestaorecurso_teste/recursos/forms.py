@@ -15,4 +15,4 @@ from .models import agendamento
 class frm_agendamento(ModelForm):  #formulario baseado em modelo
     class Meta:
         model = agendamento
-        exclude = ('criado_em',) #campo que nao sera usado no formulario
+        exclude = ('criado_em','google_link') #campo que nao sera usado no formulario
