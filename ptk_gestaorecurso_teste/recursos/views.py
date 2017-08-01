@@ -31,7 +31,7 @@ def v_home (request):
 	#		break
 
 
-	return render(request, 'login.html')
+	return render(request, 'resource-schedule.html')
 	#return HttpResponse('teste 1')
 
 #@oauth_required
