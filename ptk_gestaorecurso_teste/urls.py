@@ -23,7 +23,8 @@ urlpatterns = [
 	url(r'^agendar/', views.v_agendamento, name='agendar'),
 	#url(r'^google/', g_calendario.load, name='g_calendario'),
     #url(r'^', include('ptk_gestaorecurso_teste.recursos.urls', namespace='recursos')),
-    url(r'^admin/', admin.site.urls),
+	#url(r'^resource-schedule/', name='resource-schedule'),
+	url(r'^admin/', admin.site.urls),
     
     
 ]
