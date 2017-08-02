@@ -27,8 +27,18 @@
     </nav>
 
     <div class="container">
-      <div class="schedule-button">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resource-schedule-modal">Agendar recurso</button>
+      <div class="form-inline">
+        <div class="form-group">
+          <label for="resource-calendar" class="control-label">Recurso:</label>
+          <select class="form-control" id="resource-calendar">
+            <option value="" selected disabled>Selecione um recurso...</option>
+            {% for recurso in recursos %}
+            <option value="{{recurso.nome_google}}">{{recurso.nome}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resource-schedule-modal">Agendar recurso</button>
       </div>
       <hr/>
       <div class="calendar-box">
