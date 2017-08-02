@@ -31,6 +31,6 @@ class recursos(models.Model):
         (1, 'Aparelho'),
     )
     nome=models.CharField('Nome', max_length=50)
-    nome_google=models.CharField('nome_google', max_length=50)
+    nome_google=models.CharField('nome_google', max_length=70)
     email_responsavel = models.EmailField (blank=True)
     tipo = models.IntegerField('tipo', choices=tipo_CHOICES)
