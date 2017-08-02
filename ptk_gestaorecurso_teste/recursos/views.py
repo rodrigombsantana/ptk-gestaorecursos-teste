@@ -1,6 +1,6 @@
 from django.shortcuts import render
 #from django.http import HttpResponse
-from .models import agendamento
+from .models import agendamento, recursos
 from .forms import frm_agendamento
 from .g_calendario import get_credentials
 import httplib2
@@ -29,9 +29,12 @@ def v_home (request):
 	#	page_token = calendar_list.get('nextPageToken')
 	#	if not page_token:
 	#		break
+	recurso = recursos.objects.all()
+	context = {
+		'recursos' : recurso
+	}
 
-
-	return render(request, 'resource-schedule.html')
+	return render(request, 'resource-schedule.html', context)
 	#return HttpResponse('teste 1')
 
 #@oauth_required
