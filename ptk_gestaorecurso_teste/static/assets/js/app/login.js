@@ -9,6 +9,7 @@ $(document).ready(function(){
     } else {
       toastr.error('Não foi possível concluir a autenticação.', 'Usuário ou Senha inválido')
     }
+    return false;
   });
 
 });

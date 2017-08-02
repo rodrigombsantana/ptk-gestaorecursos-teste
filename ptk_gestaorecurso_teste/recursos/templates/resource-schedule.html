@@ -1,16 +1,17 @@
 
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <meta charset="utf-8">
     <title>PTK Gestão de Recursos</title>
 
-    <link rel="icon" type="img/ico" href="assets/img/favicon.ico">
-    <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="img/ico" href="{% static 'assets/img/favicon.ico' %}">
+    <link href="{% static 'assets/css/app.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/toastr.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/bootstrap-datepicker.min.css' %}" rel="stylesheet" type="text/css" />
   </head>
   <body>
 
@@ -18,7 +19,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">
-            <img alt="Brand" src="assets/img/logo-mini.jpg" class="logo-ptk">
+            <img alt="Brand" src="{% static 'assets/img/logo-mini.jpg' %}" class="logo-ptk">
             Gestão de Recursos
           </a>
         </div>
@@ -29,6 +30,7 @@
       <div class="schedule-button">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resource-schedule-modal">Agendar recurso</button>
       </div>
+      <hr/>
       <div class="calendar-box">
         <iframe src="https://calendar.google.com/calendar/embed?src=sjcpantokrator%40gmail.com&ctz=America/Sao_Paulo" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
       </div>
@@ -85,10 +87,10 @@
       </div>
     </div>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/toastr.min.js"></script>
-    <script src="assets/js/bootstrap-datepicker.min.js"></script>
-    <script src="assets/js/app/resource-schedule.js"></script>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/toastr.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/app/resource-schedule.js' %}"></script>
 
 </body>
