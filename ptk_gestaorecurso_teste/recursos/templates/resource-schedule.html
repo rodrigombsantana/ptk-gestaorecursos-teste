@@ -27,7 +27,8 @@
     </nav>
 
     <div class="container">
-      <div class="form-inline">
+
+      <div class="form-inline centered">
         <div class="form-group">
           <label for="resource-calendar" class="control-label">Recurso:</label>
           <select class="form-control" id="resource-calendar">
@@ -38,12 +39,15 @@
           </select>
         </div>
 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resource-schedule-modal">Agendar recurso</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resource-schedule-modal">Agendar recurso</button>
       </div>
+
       <hr/>
+
       <div class="calendar-box">
-        <iframe src="https://calendar.google.com/calendar/embed?src=sjcpantokrator%40gmail.com&ctz=America/Sao_Paulo" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <iframe id="calendar-frame" frameborder="0" scrolling="no"></iframe>
       </div>
+
     </div>
 
     <div class="modal fade" id="resource-schedule-modal" tabindex="-1" role="dialog" aria-labelledby="resource-schedule-modal-label">
@@ -59,12 +63,9 @@
                 <label for="resource" class="control-label">Sala/Recurso:</label>
                 <select class="form-control" id="resource">
                   <option value="" selected disabled>Selecione um recurso...</option>
-                  <option value="1">Salão</option>
-                  <option value="2">Sala Santa Terezinha</option>
-                  <option value="3">Sala Santa Tereza</option>
-                  <option value="4">Capela do Santíssimo</option>
-                  <option value="5">Projetor</option>
-                  <option value="6">Notebook</option>
+                  {% for recurso in recursos %}
+                  <option value="{{recurso.nome_google}}">{{recurso.nome}}</option>
+                  {% endfor %}
                 </select>
               </div>
               <div class="form-group">

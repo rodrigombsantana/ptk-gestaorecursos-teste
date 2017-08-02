@@ -34,8 +34,19 @@
   display: none;
 }
 
+.centered {
+  text-align: center;
+}
+
 .calendar-box {
+  display: none;
   margin-left: 14%;
+}
+
+.calendar-box iframe {
+  border: 0;
+  width: 800px;
+  height: 600px;
 }
 
 .schedule-button {
