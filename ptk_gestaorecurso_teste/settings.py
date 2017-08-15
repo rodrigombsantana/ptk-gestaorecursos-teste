@@ -21,7 +21,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "qp2-4*g5aw(&#k)thbr1@*%rw8gkgebpvr9lwr)++==t!xo@&8"
+SECRET_KEY = os.environ['PYTHON_SECRET']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,11 +88,10 @@ WSGI_APPLICATION = 'ptk_gestaorecurso_teste.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        #'NAME': 'd8g0q2njm1pd2f',                         # Or path to database file if using sqlite3.
         'NAME': os.environ['DB_NAME'],                         # Or path to database file if using sqlite3.
-        'USER': 'uywcsnqrnwyqvf',
-        'PASSWORD': '3a88c539fe6d32d351dbf2ab051f5f8c3b73f4093c4aea54f5f3c18c0078254d',
-        'HOST': 'ec2-23-23-234-118.compute-1.amazonaws.com',                # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+        'USER': os.environ['USER_DB'],
+        'PASSWORD': os.environ['DB_PWD'],
+        'HOST': os.environ['DB_HOST'],                # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
         'PORT': '5432'                      # Set to empty string for default.
     }
 }
