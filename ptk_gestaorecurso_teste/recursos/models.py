@@ -6,10 +6,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class agendamento(models.Model):
-    
-    data_agendamento = models.DateField('Data', default=date.today)
-    horario_inicio = models.TimeField('Horario Inicio', default=timezone.now().strftime('%H:%M'))
-    horario_fim = models.TimeField('Horario Fim', default=timezone.now().strftime('%H:%M'))
+
+    data_agendamento = models.DateField('Data')
+    horario_inicio = models.TimeField('Horario Inicio')
+    horario_fim = models.TimeField('Horario Fim')
     motivo = models.CharField('Motivo', max_length=100)
     google_link = models.CharField('Google Link', max_length=500)
     criado_em = models.DateTimeField(

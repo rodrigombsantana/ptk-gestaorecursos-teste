@@ -7,8 +7,18 @@ $(document).ready(function(){
   });
 
   $('#schedule-btn').click(function(){
-    $('#resource-schedule-modal').modal('hide');
-    toastr.info('Recurso agendado com sucesso!','');
+    //$('#resource-schedule-modal').modal('hide');
+    //toastr.info('Recurso agendado com sucesso!','');
+  });
+
+  $( "#resource-schedule-modal" ).on('shown.bs.modal', function() {
+      $("[name='horario_inicio']").val("12:00");
+      $("[name='horario_fim']").val("13:00");
+      $("[name='data_agendamento']").datepicker("update", new Date());
+  });
+
+  $('#resource-schedule-modal').on('hidden.bs.modal', function () {
+    $('#schedule-form')[0].reset();
   });
 
   var buildCalendarUrl = function(calendarSource) {
@@ -23,6 +33,7 @@ $(document).ready(function(){
     var calendarUrl = buildCalendarUrl(selectedResourceCalendar);
     $('#calendar-frame').attr('src', calendarUrl);
     $('.calendar-box').show();
+    $('#resource').val(selectedResourceCalendar);
   });
 
 });

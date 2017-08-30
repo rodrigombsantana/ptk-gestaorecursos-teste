@@ -57,43 +57,40 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="resource-schedule-modal">Agendamento de Recurso</h4>
           </div>
-          <div class="modal-body">
-            <form>
+          <form id="schedule-form" method="post">
+            {% csrf_token %}
+            <div class="modal-body">
               <div class="form-group">
                 <label for="resource" class="control-label">Sala/Recurso:</label>
-                <select class="form-control" id="resource">
+                <select class="form-control" id="resource" name="recurso-selecionado">
                   <option value="" selected disabled>Selecione um recurso...</option>
                   {% for recurso in recursos %}
                   <option value="{{recurso.nome_google}}">{{recurso.nome}}</option>
                   {% endfor %}
                 </select>
+                <div class="form-group">
+                  <label for="date" class="control-label">Data:</label>
+                  {{form.data_agendamento}}
+                </div>
+                <div class="form-group">
+                  <label for="start-hour" class="control-label">Horario Inicio:</label>
+                  {{form.horario_inicio}}
+                </div>
+                <div class="form-group">
+                  <label for="end-hour" class="control-label">Horario Fim:</label>
+                  {{form.horario_fim}}
+                </div>
+                <div class="form-group">
+                  <label for="motivo" class="control-label">Motivo:</label>
+                  {{form.motivo}}
+                </div>
               </div>
-              <div class="form-group">
-                <label for="date" class="control-label">Data:</label>
-                <input id="date" class="form-control datepicker" data-date-format="dd/mm/yyyy"></input>
-              </div>
-              <div class="form-group">
-                <label for="start-hour" class="control-label">Hora de Início:</label>
-                <input type="number" id="start-hour" class="form-control" min="0" max="23"></input>
-              </div>
-              <div class="form-group">
-                <label for="end-hour" class="control-label">Hora Final:</label>
-                <input type="number" id="end-hour" class="form-control" min="0" max="23"></input>
-              </div>
-              <label for="reason" class="control-label">Motivo:</label>
-              <select class="form-control" id="reason">
-                <option value="" selected disabled>Selecione um motivo...</option>
-                <option value="1">Apostolado</option>
-                <option value="2">Retiro</option>
-                <option value="3">Intercessão</option>
-                <option value="4">Formação</option>
-              </select>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="schedule-btn"class="btn btn-primary">Agendar</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" id="schedule-btn" class="btn btn-primary">Agendar</button>
+              <button type="button" id="cancel-schedule-btn" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -103,5 +100,10 @@
     <script src="{% static 'assets/js/toastr.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'assets/js/app/resource-schedule.js' %}"></script>
-
+    {% if is_valid %}
+      <script>toastr.info('Recurso agendado com sucesso!','');</script>
+    {% endif%}
+    {% if is_error %}
+      <script>toastr.error('Erro ao agendar recurso.','');</script>
+    {% endif%}
 </body>

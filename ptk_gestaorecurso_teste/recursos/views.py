@@ -42,10 +42,15 @@ def v_agendamento (request):
 	credentials = get_credentials()
 	http = credentials.authorize(httplib2.Http())
 	service = discovery.build('calendar', 'v3', http=http)
-	context = {}
+	recurso = recursos.objects.all()
+	context = {
+		'recursos' : recurso
+	}
 	if request.method == 'POST':
+		print(request.POST)
 		form = frm_agendamento(request.POST)
-		if form.is_valid():
+		recurso_selecionado = request.POST.get('recurso-selecionado')
+		if form.is_valid() and recurso_selecionado is not None:
 			context['is_valid'] = True
 			datai_combinada = datetime.combine(form.cleaned_data['data_agendamento'],form.cleaned_data['horario_inicio'])
 			dataf_combinada = datetime.combine(form.cleaned_data['data_agendamento'],form.cleaned_data['horario_fim'])
@@ -62,21 +67,23 @@ def v_agendamento (request):
 			        #'dateTime': '2017-07-27T10:00:00',
 			        'timeZone': 'America/Sao_Paulo',
 			      }
-			    } 
+			    }
 			json_s=json.dumps(event, cls=DjangoJSONEncoder)  #serializa para JSON
 			event_final=json.loads(json_s) #carrega JSON
-			event = service.events().insert(calendarId='sjc.pantokrator.ti@gmail.com', body=event_final).execute() #cria evento no calendario
+			event = service.events().insert(calendarId=recurso_selecionado, body=event_final).execute() #cria evento no calendario
 			db_save=form.save(commit=False)  #salva dados do formulario mao nao faz commit
 			db_save.google_link = event.get('id')
 			db_save.save() # commit no banco de dados
 			form = frm_agendamento()
+		else:
+			context['is_error'] = True
 			#print(event.get('id'))
 			#print(v_deleta_agendamento(event.get('id')))
 			#print(v_atualiza_agendamento(event.get('id'),event1))
 	else:
 		form = frm_agendamento()
 	context['form'] = form
-	template_name = 'agendar.html'
+	template_name = 'resource-schedule.html'
 
 	return render(request, template_name, context)
 
