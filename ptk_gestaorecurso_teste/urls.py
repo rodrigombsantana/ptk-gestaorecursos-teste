@@ -19,12 +19,12 @@ from ptk_gestaorecurso_teste.recursos import views,g_calendario #importar views 
 
 
 urlpatterns = [
-	url(r'^$', views.v_home, name='home'),  #chamada direta do home, nao é string
-	url(r'^agendar/', views.v_agendamento, name='agendar'),
+	url(r'^$', views.v_agendamento, name='home'),  #chamada direta do home, nao é string
+	#url(r'^agendar/', views.v_agendamento, name='agendar'),
 	#url(r'^google/', g_calendario.load, name='g_calendario'),
     #url(r'^', include('ptk_gestaorecurso_teste.recursos.urls', namespace='recursos')),
 	#url(r'^resource-schedule/', name='resource-schedule'),
 	url(r'^admin/', admin.site.urls),
-    
-    
+
+
 ]
