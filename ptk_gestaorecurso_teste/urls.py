@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from ptk_gestaorecurso_teste.recursos import views,g_calendario #importar views a serem mostradas
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
     #url(r'^', include('ptk_gestaorecurso_teste.recursos.urls', namespace='recursos')),
 	#url(r'^resource-schedule/', name='resource-schedule'),
 	url(r'^admin/', admin.site.urls),
+	url(r'^login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
 
 
 ]
