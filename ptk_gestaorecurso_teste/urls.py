@@ -26,7 +26,8 @@ urlpatterns = [
     #url(r'^', include('ptk_gestaorecurso_teste.recursos.urls', namespace='recursos')),
 	#url(r'^resource-schedule/', name='resource-schedule'),
 	url(r'^admin/', admin.site.urls),
-	url(r'^login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
+	#url(r'^login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
+	url(r'^login/', views.logando, name='login'),
 
 
 ]
