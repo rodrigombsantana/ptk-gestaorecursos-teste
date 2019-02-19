@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 #from django.http import HttpResponse
 from .models import agendamento, recursos
 from .forms import frm_agendamento
@@ -6,15 +9,14 @@ from .g_calendario import get_credentials
 import httplib2
 from apiclient import discovery
 from datetime import datetime
-#from .apps import myconverter
 import json
-from django.core.serializers.json import DjangoJSONEncoder
 #from oauth2client.contrib import django_util
 #from oauth2client import client
 #from oauth2client import tools
 #from oauth2client.file import Storage
-
 # Create your views here.
+
+
 
 def v_home (request):
 	#return render(request, 'home.html', {'usuario' : 'Rodrigo'})
@@ -29,6 +31,8 @@ def v_home (request):
 	#	page_token = calendar_list.get('nextPageToken')
 	#	if not page_token:
 	#		break
+
+
 	recurso = recursos.objects.all()
 	context = {
 		'recursos' : recurso
@@ -55,7 +59,7 @@ def v_agendamento (request):
 			datai_combinada = datetime.combine(form.cleaned_data['data_agendamento'],form.cleaned_data['horario_inicio'])
 			dataf_combinada = datetime.combine(form.cleaned_data['data_agendamento'],form.cleaned_data['horario_fim'])
 			event = {
-			      'summary': 'Rodrigo Teste',
+			      'summary': request.user.username,
 			      'description': form.cleaned_data['motivo'] ,
 			      'start': {
 			        'dateTime': datai_combinada,
@@ -106,3 +110,21 @@ def v_atualiza_agendamento (eventId, event):
 														   horario_fim=datetime.strftime(event['end']['dateTime'],"%H:%M"),
 														   motivo=event['description'])
 	return 'atualizado'
+
+
+def logando(request):
+	print('entrei aqui')
+	print(request.method)
+	context = {}
+	if request.method == 'POST':
+		print('entrei aqui2')
+		usuario = authenticate(username=request.POST['usuario'], password = request.POST['senha'])
+		if usuario is not None:
+			#login_required(request, usuario)
+			return redirect('v_agendamento',request)
+		else:
+			context = {
+				'is_error' : True
+			}
+
+	return render(request, 'login.html', context)
